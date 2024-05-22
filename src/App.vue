@@ -12,5 +12,5 @@ import NavBar from "@/components/Layout/NavBar.vue";
 </script>
 
 <style>
-@import url(node_modules\bulma\css\bulma.min.css);
+@import 'D:\Programming\Projects\UdemyCourses\udemy-course-noteball-project\node_modules\bulma\css\bulma.min.css';
 </style>
