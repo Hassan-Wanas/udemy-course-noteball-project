@@ -1,6 +1,13 @@
 <template>
   <div class="notes">
 
+    <AddEditNote>
+      <template #buttons>
+        <button @click="addNote" :disabled="!newNote" class="button is-link has-background-success">Add New
+          Note</button>
+      </template>
+    </AddEditNote>
+    <!--
     <div class="container has-background-success-dark p-4 mb-5 box">
       <div class="field">
         <div class="control">
@@ -15,7 +22,7 @@
         </div>
       </div>
     </div>
-
+-->
     <Note v-for="note in storeNotes.notes" :key="note.id" :note="note" />
   </div>
 </template>
@@ -26,6 +33,7 @@
 
 import { ref } from 'vue'
 import Note from '@/components/Notes/Note.vue'
+import AddEditNote from '@/components/Notes/AddEditNotes.vue'
 import { useStoreNotes } from '@/stores/storeNotes.js'
 
 // store
