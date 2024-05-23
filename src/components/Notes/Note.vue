@@ -10,7 +10,7 @@
     </div>
     <footer class="card-footer">
       <a href="#" class="card-footer-item">Edit</a>
-      <a @click="handleDeleteClicked" href="#" class="card-footer-item">Delete</a>
+      <a @click="storeNotes.deleteNote(note.id)" href="#" class="card-footer-item">Delete</a>
     </footer>
   </div>
 </template>
@@ -20,6 +20,8 @@
 // imports
 
 import { computed } from "vue";
+import { useStoreNotes } from '@/stores/storeNotes.js'
+
 
 // props
 
@@ -30,9 +32,9 @@ const props = defineProps({
   }
 })
 
-// emits
+// store
 
-const emit = defineEmits(['deleteClicked'])
+const storeNotes = useStoreNotes()
 
 // Character Lenght
 
@@ -42,9 +44,4 @@ const characterLength = computed(() => {
   return `${length} ${description}`
 })
 
-// handle delete clicked
-
-const handleDeleteClicked = () => {
-  emit('deleteClicked', props.note.id)
-}
 </script>
