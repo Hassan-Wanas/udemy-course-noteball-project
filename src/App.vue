@@ -1,6 +1,6 @@
 <template>
   <NavBar />
-  <div class="container is-max-desktop px-2 py-4">
+  <div class="container is-max-desktop px-2 py-4 has-text-black">
     <RouterView />
   </div>
 </template>

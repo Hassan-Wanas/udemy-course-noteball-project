@@ -1,5 +1,5 @@
 <template>
-  <div class="notes has-text-black">
+  <div class="notes">
 
     <div class="container has-background-success-dark p-4 mb-5 box">
       <div class="field">
