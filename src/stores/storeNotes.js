@@ -1,7 +1,7 @@
-// stores/counter.js
+// stores/storeNote.js
 import { defineStore } from 'pinia'
 
-export const useCounterStore = defineStore('counter', {
+export const useStoreNotes = defineStore('storeNotes', {
   state: () => {
     return { 
       notes: [
