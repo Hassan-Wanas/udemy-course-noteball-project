@@ -47,6 +47,6 @@ const loveNoteballs = ref('')
 
 // watch
 
-useWatchCharacters(loveNoteballs)
+useWatchCharacters(loveNoteballs, 50)
 
 </script>

@@ -16,7 +16,7 @@
 
 // imports
 
-import { ref, watch } from 'vue'
+import { ref } from 'vue'
 import Note from '@/components/Notes/Note.vue'
 import AddEditNote from '@/components/Notes/AddEditNotes.vue'
 import { useStoreNotes } from '@/stores/storeNotes.js'
@@ -39,7 +39,7 @@ const addNote = () => {
 
 // watch characters
 
-useWatchCharacters(newNote)
+useWatchCharacters(newNote, 100)
 
 /*
 watch(newNote, (newValue) => {
