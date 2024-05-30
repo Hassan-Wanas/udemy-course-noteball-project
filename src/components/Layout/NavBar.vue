@@ -10,7 +10,7 @@ import { RouterLink } from 'vue-router';
 
         <a @click="showMobileNav = !showMobileNav" role="button" class="navbar-burger"
           :class="{ 'is-active': showMobileNav }" aria-label="menu" aria-expanded="false"
-          data-target="navbarBasicExample">
+          data-target="navbarBasicExample" ref="navbarBurgerRef">
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
@@ -18,7 +18,7 @@ import { RouterLink } from 'vue-router';
         </a>
       </div>
 
-      <div id="navbarBasicExample" class="navbar-menu" :class="{ 'is-active': showMobileNav }">
+      <div id="navbarBasicExample" class="navbar-menu" :class="{ 'is-active': showMobileNav }" ref="navbarMenuRef">
         <div class="navbar-end">
           <RouterLink @click="showMobileNav = false" to="/" class="navbar-item" activeClass="is-active">
             Notes
@@ -38,10 +38,25 @@ import { RouterLink } from 'vue-router';
 // imports
 
 import { ref } from 'vue';
+import { onClickOutside } from '@vueuse/core'
 
 // mobile nav
 
 const showMobileNav = ref(false)
+
+// click outside to close
+
+const navbarMenuRef = ref(null)
+const navbarBurgerRef = ref(null)
+
+
+onClickOutside(navbarMenuRef, () => {
+  showMobileNav.value = false
+}, {
+  ignore: [
+    navbarBurgerRef
+  ]
+})
 
 </script>
 
