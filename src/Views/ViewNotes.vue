@@ -20,6 +20,7 @@ import { ref, watch } from 'vue'
 import Note from '@/components/Notes/Note.vue'
 import AddEditNote from '@/components/Notes/AddEditNotes.vue'
 import { useStoreNotes } from '@/stores/storeNotes.js'
+import { useWatchCharacters } from '@/use/UseWatchCharacters'
 
 // store
 
@@ -38,9 +39,13 @@ const addNote = () => {
 
 // watch characters
 
+useWatchCharacters(newNote)
+
+/*
 watch(newNote, (newValue) => {
   if (newValue.length === 100) {
     alert('Only 100 Characters Allowed')
   }
 })
+ */
 </script>
