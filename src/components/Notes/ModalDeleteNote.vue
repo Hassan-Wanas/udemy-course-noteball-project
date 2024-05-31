@@ -1,7 +1,8 @@
 <template>
   <div class="modal is-active p-2">
     <div class="modal-background"></div>
-    <div ref="deleteModalRef" class="modal-card"> <!-- i need to add the ref here not on the dev with the modal class becouse i need to click on the background of the card modal so it closes-->
+    <div ref="deleteModalRef" class="modal-card">
+      <!-- i need to add the ref here not on the dev with the modal class becouse i need to click on the background of the card modal so it closes-->
       <header class="modal-card-head">
         <p class="modal-card-title">Delete Note ?</p>
         <button @click="closeModal" class="delete" aria-label="close"></button>
@@ -23,7 +24,7 @@
 
 // imports
 
-import { ref } from 'vue'
+import { onMounted, onUnmounted, ref } from 'vue'
 import { onClickOutside } from '@vueuse/core'
 
 // props
@@ -50,4 +51,19 @@ const closeModal = () => {
 const deleteModalRef = ref(null)
 
 onClickOutside(deleteModalRef, closeModal)
+
+// keyboard control
+
+const handleEscapeKey = e => {
+  console.log('close it!')
+  if (e.key === 'Escape') closeModal()
+}
+
+onMounted(() => {
+  document.addEventListener('keyup', handleEscapeKey)
+})
+
+onUnmounted(() => {
+  document.removeEventListener('keyup', handleEscapeKey)
+})
 </script>
