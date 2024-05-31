@@ -1,7 +1,7 @@
 <template>
-  <div ref="deleteModalRef" class="modal is-active">
+  <div class="modal is-active p-2">
     <div class="modal-background"></div>
-    <div class="modal-card">
+    <div ref="deleteModalRef" class="modal-card"> <!-- i need to add the ref here not on the dev with the modal class becouse i need to click on the background of the card modal so it closes-->
       <header class="modal-card-head">
         <p class="modal-card-title">Delete Note ?</p>
         <button @click="closeModal" class="delete" aria-label="close"></button>
@@ -49,7 +49,5 @@ const closeModal = () => {
 
 const deleteModalRef = ref(null)
 
-onClickOutside(deleteModalRef, () => {
-  emits('update:modelValue', false)
-})
+onClickOutside(deleteModalRef, closeModal)
 </script>
