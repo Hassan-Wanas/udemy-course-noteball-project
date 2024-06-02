@@ -24,12 +24,14 @@ export const useStoreNotes = defineStore('storeNotes', {
           content: 'Shorter form note'
         },
         */
-      ]
+      ],
+      notesLoaded: false
     }
   },
 
   actions: {
     async getNotes() {
+      this.notesLoaded = false
       onSnapshot(notesCollectionQuery, (querySnapshot) => {
         let notes = []
         querySnapshot.forEach((doc) => {
@@ -39,8 +41,11 @@ export const useStoreNotes = defineStore('storeNotes', {
             date: doc.data().date
           }
           notes.push(note)
-        });
-        this.notes = notes
+        })
+        setTimeout(() => {
+          this.notes = notes
+          this.notesLoaded = true
+        }, 2000);
       });
     },
     async addNote(newNoteContent) {
