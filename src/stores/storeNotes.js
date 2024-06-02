@@ -42,10 +42,8 @@ export const useStoreNotes = defineStore('storeNotes', {
           }
           notes.push(note)
         })
-        setTimeout(() => {
           this.notes = notes
           this.notesLoaded = true
-        }, 2000);
       });
     },
     async addNote(newNoteContent) {
