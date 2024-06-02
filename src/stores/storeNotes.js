@@ -1,6 +1,6 @@
 // stores/storeNote.js
 import { defineStore } from 'pinia'
-import { collection, onSnapshot, doc, setDoc, deleteDoc } from "firebase/firestore";
+import { collection, onSnapshot, doc, setDoc, deleteDoc, updateDoc } from "firebase/firestore";
 import { db } from "@/JS/Firebase.js";
 
 export const useStoreNotes = defineStore('storeNotes', {
@@ -46,9 +46,16 @@ export const useStoreNotes = defineStore('storeNotes', {
     async deleteNote(idToDelete) {
       await deleteDoc(doc(db, "Notes", idToDelete));
     },
-    updateNote(id, content) {
-      let index = this.notes.findIndex(note => note.id === id)
-      this.notes[index].content = content
+    async updateNote(id, content) {
+      //let index = this.notes.findIndex(note => note.id === id)
+      //this.notes[index].content = content
+
+      // Set the "capital" field of the city 'DC'
+
+      await updateDoc(doc(db, "Notes", id), {
+        content
+      });
+
     }
   },
   getters: {
