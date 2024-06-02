@@ -1,7 +1,14 @@
 // stores/storeNote.js
 import { defineStore } from 'pinia'
-import { collection, onSnapshot, doc, setDoc, deleteDoc, updateDoc } from "firebase/firestore";
+import {
+  collection, onSnapshot,
+  doc, setDoc, deleteDoc, updateDoc,
+  query, orderBy
+} from "firebase/firestore";
 import { db } from "@/JS/Firebase.js";
+
+const notesCollectionRef = collection(db, 'Notes')
+const notesCollectionQuery = query(notesCollectionRef, orderBy('id', 'desc'));
 
 export const useStoreNotes = defineStore('storeNotes', {
   state: () => {
@@ -23,7 +30,7 @@ export const useStoreNotes = defineStore('storeNotes', {
 
   actions: {
     async getNotes() {
-      onSnapshot(collection(db, "Notes"), (querySnapshot) => {
+      onSnapshot(notesCollectionQuery, (querySnapshot) => {
         let notes = []
         querySnapshot.forEach((doc) => {
           let note = {
@@ -40,11 +47,12 @@ export const useStoreNotes = defineStore('storeNotes', {
         id = currentDate.toString()
       
       await setDoc(doc(db, "Notes", id), {
+        id,
         content: newNoteContent
       });
     },
     async deleteNote(idToDelete) {
-      await deleteDoc(doc(db, "Notes", idToDelete));
+      await deleteDoc(doc(notesCollectionRef, idToDelete));
     },
     async updateNote(id, content) {
       //let index = this.notes.findIndex(note => note.id === id)
@@ -52,7 +60,7 @@ export const useStoreNotes = defineStore('storeNotes', {
 
       // Set the "capital" field of the city 'DC'
 
-      await updateDoc(doc(db, "Notes", id), {
+      await updateDoc(doc(notesCollectionRef, id), {
         content
       });
 
