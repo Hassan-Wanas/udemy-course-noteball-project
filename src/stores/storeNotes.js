@@ -63,7 +63,8 @@ export const useStoreNotes = defineStore('storeNotes', {
       //this.notes[index].content = content
 
       // Set the "capital" field of the city 'DC'
-
+      console.log('id:', id)
+      console.log('content:', content)
       await updateDoc(doc(notesCollectionRef, id), {
         content
       });
