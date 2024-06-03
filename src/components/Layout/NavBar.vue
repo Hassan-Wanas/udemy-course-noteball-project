@@ -19,6 +19,10 @@ import { RouterLink } from 'vue-router';
       </div>
 
       <div id="navbarBasicExample" class="navbar-menu" :class="{ 'is-active': showMobileNav }" ref="navbarMenuRef">
+        <div class="navbar-start">
+          <button class="button is-small is-info mt-3 ml-3">Log out</button>
+        </div>
+
         <div class="navbar-end">
           <RouterLink @click="showMobileNav = false" to="/" class="navbar-item" activeClass="is-active">
             Notes
