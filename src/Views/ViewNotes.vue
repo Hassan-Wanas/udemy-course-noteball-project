@@ -25,7 +25,7 @@
 
 // imports
 
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import Note from '@/components/Notes/Note.vue'
 import AddEditNote from '@/components/Notes/AddEditNotes.vue'
 import { useStoreNotes } from '@/stores/storeNotes.js'
@@ -57,4 +57,10 @@ watch(newNote, (newValue) => {
   }
 })
  */
+
+// mounted
+
+onMounted(() => {
+  storeNotes.getNotes()
+})
 </script>
