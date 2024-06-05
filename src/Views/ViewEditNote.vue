@@ -35,7 +35,8 @@ noteContent.value = storeNotes.getNoteContent(route.params.id)
 // save clicked
 
 const handleSaveButton = () => {
-  storeNotes.updateNote(route.params.id, noteContent)
+  storeNotes.updateNote(route.params.id, noteContent.value)
+  // add .value to the noteContent fixes the updateNote problem in storeNotes.js
   router.push('/')
 }
 

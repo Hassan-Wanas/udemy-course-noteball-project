@@ -59,10 +59,6 @@ export const useStoreNotes = defineStore('storeNotes', {
       await deleteDoc(doc(notesCollectionRef, idToDelete));
     },
     async updateNote(id, content) {
-      //let index = this.notes.findIndex(note => note.id === id)
-      //this.notes[index].content = content
-
-      // Set the "capital" field of the city 'DC'
       console.log('id:', id)
       console.log('content:', content)
       await updateDoc(doc(notesCollectionRef, id), {
