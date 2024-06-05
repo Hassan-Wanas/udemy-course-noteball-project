@@ -59,8 +59,6 @@ export const useStoreNotes = defineStore('storeNotes', {
       await deleteDoc(doc(notesCollectionRef, idToDelete));
     },
     async updateNote(id, content) {
-      console.log('id:', id)
-      console.log('content:', content)
       await updateDoc(doc(notesCollectionRef, id), {
         content
       });
