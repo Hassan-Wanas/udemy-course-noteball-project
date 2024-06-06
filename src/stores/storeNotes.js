@@ -56,7 +56,10 @@ export const useStoreNotes = defineStore('storeNotes', {
         })
           this.notes = notes
           this.notesLoaded = true
+      }, error => {
+        console.log('error.message: ', error.message)
       });
+      // make a security rule in cloud firebase in rules page
     },
     clearNotes() {
       this.notes = []
