@@ -12,18 +12,19 @@ export const useStoreAuth = defineStore('storeAuth', {
   },
   actions: {
     init() {
+      const storeNotes = useStoreNotes()
+
       onAuthStateChanged(auth, (user) => {
         if (user) {
-          const storeNotes = useStoreNotes()
-
           this.user.id = user.uid
           this.user.email = user.email
           this.router.push('/')
-          
+
           storeNotes.init()
         } else {
           this.user = {}
           this.router.replace('/auth')
+          storeNotes.clearNotes()
         }
       });
     },
