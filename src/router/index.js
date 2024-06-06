@@ -34,6 +34,10 @@ const router = createRouter({
 })
 
 
+// prevent the user from going to auth page
+// if he logged in and he is in notes page
+// and to prevent user from leaving login page
+// if he is not logged in
 router.beforeEach(async (to, from) => {
   const storeAuth = useStoreAuth()
   console.log('to: ', to)
