@@ -58,9 +58,4 @@ watch(newNote, (newValue) => {
 })
  */
 
-// mounted
-
-onMounted(() => {
-  storeNotes.getNotes()
-})
 </script>

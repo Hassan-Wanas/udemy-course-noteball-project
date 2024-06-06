@@ -2,6 +2,7 @@
 import { defineStore } from 'pinia'
 import { createUserWithEmailAndPassword, signOut, signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
 import { auth } from '@/JS/Firebase';
+import { useStoreNotes } from './storeNotes';
 
 export const useStoreAuth = defineStore('storeAuth', {
   state: () => {
@@ -13,9 +14,13 @@ export const useStoreAuth = defineStore('storeAuth', {
     init() {
       onAuthStateChanged(auth, (user) => {
         if (user) {
+          const storeNotes = useStoreNotes()
+
           this.user.id = user.uid
           this.user.email = user.email
           this.router.push('/')
+          
+          storeNotes.init()
         } else {
           this.user = {}
           this.router.replace('/auth')
